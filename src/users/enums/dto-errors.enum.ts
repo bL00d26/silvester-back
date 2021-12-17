@@ -1,0 +1,17 @@
+export enum UserDtoError {
+  REGISTER_CODE = 'Código de registro incorrecto',
+  OLD_PASSWORD = 'Contraseña antigua inválida',
+  NEW_PASSWORD = 'Contraseña nuevainválida',
+  USER_ID = 'Usuario incorrecto',
+  SCHOOL_ID = 'Id de colegio incorrecto',
+  CLASSROOM_ID = 'Código de salón incorrecto',
+  USED_CODE = 'Código inválido',
+  FIRST_NAME = 'Nombre inválido',
+  LAST_NAME = 'Apellido Inválido',
+  EMAIL = 'Email inválido',
+  PROFILE_IMAGE = 'Foto de perfil inválida',
+  BIRTHDAY = 'Cumpleaños inválido',
+  DNI = 'Dni inválido',
+  LEVELS = 'Niveles inválidos',
+  PARENT_EMAIL = 'Correo del padre inválido',
+}
