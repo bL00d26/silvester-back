@@ -1,22 +1,19 @@
+import { ConfigModule } from '@nestjs/config';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
-import { ProductsModule } from './products/products.module';
 import { OrdersModule } from './orders/orders.module';
 import { EmailModule } from './email/email.module';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(process.env.MONGO_URL, {
-      useCreateIndex: true,
-      useFindAndModify: false,
-    }),
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
+    MongooseModule.forRoot(process.env.MONGO_URL, {}),
     UsersModule,
-    ProductsModule,
     OrdersModule,
     EmailModule,
+    ProductsModule,
   ],
   controllers: [],
   providers: [],

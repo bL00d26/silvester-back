@@ -1,5 +1,4 @@
 import { Document } from 'mongoose';
-
 export interface User extends Document {
   type: number;
   profileImage: string;
@@ -8,6 +7,9 @@ export interface User extends Document {
   lastName: string;
   confirmedEmail: boolean;
   password: string;
-  birthday: string;
-  dni: string;
+  address: string;
+  district: string;
+  department: string;
+  cellphone: string;
+  active: boolean;
 }

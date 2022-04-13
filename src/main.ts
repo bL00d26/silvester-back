@@ -3,7 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
-  const port = process.env.PORT || 4000;
+  const port = process.env.PORT || 4050;
   const app = await NestFactory.create(AppModule);
   const options = new DocumentBuilder()
     .setTitle('Silvester Back ver. 1.0')

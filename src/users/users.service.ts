@@ -1,22 +1,100 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Collection } from 'src/enums';
+import {
+  ChangePasswordDto,
+  EditUserDto,
+  LoginUserDto,
+  RegisterUserDto,
+} from './dto';
+import { User } from './models';
 
 @Injectable()
 export class UsersService {
-  constructor() {}
+  private readonly logger = new Logger('UsersService');
+  constructor(
+    @InjectModel(Collection.USER)
+    private readonly userModel: Model<User>,
+  ) {}
 
-  // async getUserByEmail(loginUserDto: LoginUserDto) {
-  //   // const { email, password } = loginUserDto;
-  //   const user = await this.userModel
-  //     .findOne(loginUserDto)
-  //     .populate(Field.SCHOOL, {}, Collection.SCHOOL);
-  //   if (!user) {
-  //     throw new UnauthorizedException('Credenciales Incorrectas');
-  //   }
+  async registerUser(registerUserDto: RegisterUserDto) {
+    try {
+      const newUser = await new this.userModel(registerUserDto).save();
+      return newUser;
+    } catch (error) {
+      this.logger.log(error);
+      return null;
+    }
+  }
+  async loginUser(loginUserDto: LoginUserDto) {
+    try {
+      const user = await this.userModel.findOne(loginUserDto);
+      if (!user || !user.active) return null;
+      return user;
+    } catch (error) {
+      this.logger.log(error);
+      return null;
+    }
+  }
+  async editUser(id: string, editUserDto: EditUserDto) {
+    try {
+      const user = await this.userModel.findByIdAndUpdate(id, editUserDto, {
+        new: true,
+      });
+      if (!user) return null;
+      return user;
+    } catch (error) {
+      this.logger.log(error);
+      return null;
+    }
+  }
+  async setActiveUser(userId: string, status: boolean) {
+    try {
+      const user = await this.userModel.findByIdAndUpdate(
+        userId,
+        { active: status },
+        {
+          new: true,
+        },
+      );
+      if (!user) return null;
+      return user;
+    } catch (error) {
+      this.logger.log(error);
+      return null;
+    }
+  }
 
-  //   const classrooms = await this.classroomsService.getClassrooms(user._id);
-  //   if (!classrooms) {
-  //     throw new UnauthorizedException('Error al Iniciar Sesión');
-  //   }
-  //   return { user, classrooms, school: user.school };
-  // }
+  async updateUserProfileImg(userId: string) {
+    try {
+      const newUser = await this.userModel.findByIdAndUpdate(
+        userId,
+        {
+          profileImage: `/users/profile/${userId}`,
+        },
+        { new: true },
+      );
+      return newUser;
+    } catch (error) {
+      this.logger.log(error);
+      return null;
+    }
+  }
+
+  async updateUserPassword(changePasswordDto: ChangePasswordDto) {
+    try {
+      const newUser = await this.userModel.findOneAndUpdate(
+        {
+          password: changePasswordDto.oldPassword,
+          _id: changePasswordDto.userId,
+        },
+        { password: changePasswordDto.newPassword },
+        { new: true },
+      );
+      return newUser;
+    } catch (error) {
+      return null;
+    }
+  }
 }

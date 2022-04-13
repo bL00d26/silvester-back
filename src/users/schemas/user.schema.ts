@@ -1,5 +1,4 @@
 import { Schema } from 'mongoose';
-import { Collection } from 'src/enums';
 
 export const userSchema = new Schema({
   type: {
@@ -33,14 +32,26 @@ export const userSchema = new Schema({
     type: String,
     required: true,
   },
-  birthday: {
+  address: {
     type: String,
     required: true,
   },
-  dni: {
+  district: {
     type: String,
-    unique: true,
     required: true,
+  },
+  department: {
+    type: String,
+    required: true,
+  },
+  cellphone: {
+    type: String,
+    required: true,
+  },
+  active: {
+    type: Boolean,
+    required: true,
+    default: true,
   },
 });
 

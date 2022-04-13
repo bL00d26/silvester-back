@@ -11,14 +11,9 @@ export class AuthService {
   ) {}
 
   async login(loginUserDto: LoginUserDto) {
-    const { user, classrooms, school } = await this.userService.getUserByEmail(
-      loginUserDto,
-    );
-    if (user && user.password === loginUserDto.password) {
-      const accessToken = this.jwtService.sign({ user });
-      return { user, classrooms, school, accessToken };
-    }
-
-    throw new UnauthorizedException('Email y/o contraseña incorrectos');
+    const user = await this.userService.loginUser(loginUserDto);
+    if (!user) return null;
+    const accessToken = this.jwtService.sign({ user });
+    return { user, accessToken };
   }
 }

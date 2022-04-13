@@ -7,6 +7,12 @@ import { User } from 'src/users/models';
 export class EmailService {
   constructor(private readonly mailerService: MailerService) {}
 
+  async sendConfirmationEmail(user: User) {
+    const message = {
+      to: user.email,
+      from: 'silvester@silvester.com',
+    };
+  }
   // async sendEmail(
   //   messageReceptor: string,
   //   messageSubject: string,

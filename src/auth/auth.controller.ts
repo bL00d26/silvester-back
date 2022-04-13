@@ -2,13 +2,11 @@ import {
   Body,
   Controller,
   HttpStatus,
-  InternalServerErrorException,
   Post,
-  Req,
   Res,
-  UseGuards,
+  UnauthorizedException,
 } from '@nestjs/common';
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import { LoginUserDto } from 'src/users/dto';
 import { AuthService } from './auth.service';
 
@@ -17,25 +15,13 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('/login')
-  async signIn(
-    @Req() req: Request,
-    @Body() loginUserDto: LoginUserDto,
-    @Res() res: Response,
-  ) {
-    const {
-      user,
-      classrooms,
-      school,
-      accessToken,
-    } = await this.authService.login(loginUserDto);
-    if (!user) {
-      throw new InternalServerErrorException('Error al Iniciar Sesión');
-    }
+  async signIn(@Body() loginUserDto: LoginUserDto, @Res() res: Response) {
+    const { user, accessToken } = await this.authService.login(loginUserDto);
+    if (!user)
+      throw new UnauthorizedException('Email y/o contraseña incorrectos');
     res.status(HttpStatus.OK).json({
       success: true,
       user,
-      classrooms,
-      school,
       accessToken,
     });
   }
