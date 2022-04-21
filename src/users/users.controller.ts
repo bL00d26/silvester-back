@@ -40,7 +40,7 @@ export class UsersController {
         'Error al registrar usuario',
         HttpStatus.BAD_REQUEST,
       );
-    this.emailService.sendConfirmationEmail(user);
+    // this.emailService.sendConfirmationEmail(user); //TODO: Enviar correo de confirmación
     return res.status(HttpStatus.OK).json({ success: true, user });
   }
   @Put('/edit/:id')
@@ -68,6 +68,18 @@ export class UsersController {
       );
     return res.status(HttpStatus.OK).json({ success: true, user });
   }
+
+  @Get('/confirm-email/:id')
+  async confirmEmail(@Res() res: Response, @Param('id') userId: string) {
+    const user = await this.usersService.confirmUserEmail(userId);
+    if (!user)
+      throw new HttpException(
+        'Error al desactivar usuario',
+        HttpStatus.BAD_REQUEST,
+      );
+    return res.status(HttpStatus.OK).json({ success: true, user });
+  }
+
   @Get('/activate/:id')
   async activateUser(@Res() res: Response, @Param('id') userId: string) {
     const user = await this.usersService.setActiveUser(userId, true);

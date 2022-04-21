@@ -65,6 +65,22 @@ export class UsersService {
       return null;
     }
   }
+  async confirmUserEmail(userId: string) {
+    try {
+      const user = await this.userModel.findByIdAndUpdate(
+        userId,
+        { confirmedEmail: true },
+        {
+          new: true,
+        },
+      );
+      if (!user) return null;
+      return user;
+    } catch (error) {
+      this.logger.log(error);
+      return null;
+    }
+  }
 
   async updateUserProfileImg(userId: string) {
     try {
