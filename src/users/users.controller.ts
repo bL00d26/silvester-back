@@ -151,4 +151,17 @@ export class UsersController {
       res.sendFile(null);
     }
   }
+  @Get('/test-email')
+  async testEmail(@Res() res: Response) {
+    try {
+      const res1 = await this.emailService.sendUserConfirmation();
+      res.status(HttpStatus.OK).json({
+        res1,
+      });
+    } catch (error) {
+      res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+        error: 'Error sending email',
+      });
+    }
+  }
 }

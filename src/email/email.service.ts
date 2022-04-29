@@ -13,6 +13,27 @@ export class EmailService {
       from: 'silvester@silvester.com',
     };
   }
+
+  async sendUserConfirmation() {
+    try {
+      const url = `example.com/auth/confirm?token=${'HOLATOKEN'}`;
+
+      await this.mailerService.sendMail({
+        to: 'martinperez290597@gmail.com',
+        from: 'silvester@silvester.com',
+        subject: 'Welcome to Nice App! Confirm your Email',
+        template: './confirmation', // `.hbs` extension is appended automatically
+        context: {
+          name: 'Martin Perez',
+          url,
+        },
+      });
+      return 'Email sent';
+    } catch (error) {
+      console.log(error);
+      return 'Error sending email';
+    }
+  }
   // async sendEmail(
   //   messageReceptor: string,
   //   messageSubject: string,

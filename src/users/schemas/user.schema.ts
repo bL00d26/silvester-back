@@ -4,6 +4,7 @@ export const userSchema = new Schema({
   type: {
     type: Number,
     required: true,
+    default: 2,
   },
   profileImage: {
     type: String,

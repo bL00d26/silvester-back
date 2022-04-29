@@ -4,18 +4,10 @@ import {
   IsNumber,
   IsString,
   MinLength,
-  IsOptional,
-  IsArray,
-  IsNumberString,
-  ArrayMinSize,
 } from 'class-validator';
-import { dniMinLength, passwordMinLength, RegisterError } from '../enums';
+import { passwordMinLength, RegisterError } from '../enums';
 
 export class RegisterUserDto {
-  @IsNumber()
-  @IsNotEmpty({ message: RegisterError.EMPTY_FIRST_NAME, always: true })
-  type: number;
-
   @IsEmail({}, { message: RegisterError.EMAIL, always: true })
   @IsNotEmpty({ message: RegisterError.EMPTY_EMAIL, always: true })
   email: string;
@@ -40,19 +32,19 @@ export class RegisterUserDto {
   })
   repeatedPassword: string;
 
-  @IsString({ message: RegisterError.LAST_NAME, always: true })
-  @IsNotEmpty({ message: RegisterError.EMPTY_LAST_NAME, always: true })
+  @IsString({ message: RegisterError.ADDRESS, always: true })
+  @IsNotEmpty({ message: RegisterError.EMPTY_ADDRESS, always: true })
   address: string;
 
-  @IsString({ message: RegisterError.LAST_NAME, always: true })
-  @IsNotEmpty({ message: RegisterError.EMPTY_LAST_NAME, always: true })
+  @IsString({ message: RegisterError.DISTRICT, always: true })
+  @IsNotEmpty({ message: RegisterError.EMPTY_DISTRICT, always: true })
   district: string;
 
-  @IsString({ message: RegisterError.LAST_NAME, always: true })
-  @IsNotEmpty({ message: RegisterError.EMPTY_LAST_NAME, always: true })
+  @IsString({ message: RegisterError.DEPARTMENT, always: true })
+  @IsNotEmpty({ message: RegisterError.EMPTY_DEPARTMENT, always: true })
   department: string;
 
-  @IsString({ message: RegisterError.LAST_NAME, always: true })
-  @IsNotEmpty({ message: RegisterError.EMPTY_LAST_NAME, always: true })
+  @IsString({ message: RegisterError.CELLPHONE, always: true })
+  @IsNotEmpty({ message: RegisterError.EMPTY_CELLPHONE, always: true })
   cellphone: string;
 }
