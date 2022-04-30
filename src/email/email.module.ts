@@ -25,6 +25,14 @@ import { EmailService } from './email.service';
           strict: true,
         },
       },
+      options: {
+        partials: {
+          dir: join(__dirname, 'templates/partials'),
+          options: {
+            strict: true,
+          },
+        },
+      },
     }),
   ],
   exports: [EmailService],
