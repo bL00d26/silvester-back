@@ -7,20 +7,13 @@ import { User } from 'src/users/models';
 export class EmailService {
   constructor(private readonly mailerService: MailerService) {}
 
-  async sendConfirmationEmail(user: User) {
-    const message = {
-      to: user.email,
-      from: 'silvester@silvester.com',
-    };
-  }
-
   async sendUserConfirmation() {
     try {
       const url = `example.com/auth/confirm?token=${'HOLATOKEN'}`;
 
-      await this.mailerService.sendMail({
+      const messageInfo = await this.mailerService.sendMail({
         to: 'martinperez290597@gmail.com',
-        from: 'silvester@silvester.com',
+        from: 'plataforma@arcavirtual.net',
         subject: 'Welcome to Nice App! Confirm your Email',
         template: './confirmation', // `.hbs` extension is appended automatically
         context: {
@@ -28,30 +21,26 @@ export class EmailService {
           url,
         },
       });
-      return 'Email sent';
+      return messageInfo;
     } catch (error) {
       console.log(error);
       return 'Error sending email';
     }
   }
-  // async sendEmail(
-  //   messageReceptor: string,
-  //   messageSubject: string,
-  //   messageHtml: string,
-  // ) {
-  //   try {
-  //     const res = await this.mailerService.sendMail({
-  //       from: 'plataforma@arcavirtual.net',
-  //       to: messageReceptor,
-  //       subject: messageSubject,
-  //       html: messageHtml,
-  //     });
-  //     return res;
-  //   } catch (error) {
-  //     console.log(error);
-  //     return null;
-  //   }
-  // }
+  async sendEmail() {
+    try {
+      const res = await this.mailerService.sendMail({
+        from: 'plataforma@arcavirtual.net',
+        to: 'martinperez290597@gmail.com',
+        subject: 'HOLA',
+        html: '<p>HOLA</p>',
+      });
+      return res;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  }
 
   // async notifyEvaluationClassroom(
   //   evaluationClassroom: EvaluationClassroom,
