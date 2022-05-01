@@ -6,6 +6,8 @@ import { OrdersModule } from './orders/orders.module';
 import { EmailModule } from './email/email.module';
 import { ProductsModule } from './products/products.module';
 import { AuthModule } from './auth/auth.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -14,6 +16,10 @@ import { AuthModule } from './auth/auth.module';
       'mongodb+srv://pixie:pixie123@cluster0.g8kd3.mongodb.net/silvesterdb',
       {},
     ),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', '/public'),
+      serveRoot: '/public/',
+    }),
     AuthModule,
     UsersModule,
     OrdersModule,

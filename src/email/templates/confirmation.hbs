@@ -1,7 +1,27 @@
-<p>Hey {{ name }},</p>
-<p>Please click below to confirm your email</p>
-<p>
-    <a href="{{ url }}">Confirm</a>
-</p>
+<head>
+    <link href="http://localhost:4050/public/styles/styles.css" rel="stylesheet">
+</head>
+<div class="simple__mailing confirmation-email">
+      <div class="main-text center bg-primary">
+        <h2>¡Bienvenido estamos encantados de que te hayas unido a Silvester!</h2>
+      </div>
+      <div class="message">
+        <p>Hola {{name}},</p>
+        <p class="mt-5">
+          Activa tu cuenta para poder realizar compras y ver el estado de tus pedidos en <a href="https://www.silvester.com">Silvester</a>. 
+          Para activar tu cuenta solo debes confirmar tu correo haciendo click en el botón de abajo.
+        </p>
+        
+        <div class="buttons center col-12">
+          <a href="{{url}}" class="button bg-primary">Confirmar mi correo</a>
+         </div>
+        
+         <small class="mt-5 center">
+            Si no solicitaste este correo de confirmación puedes ignorarlo. 
+           </small>
+        </p>
+      </div>
+    </div>
 
-<p>If you did not request this email you can safely ignore it.</p>
+
+
