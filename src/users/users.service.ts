@@ -65,10 +65,10 @@ export class UsersService {
       return null;
     }
   }
-  async confirmUserEmail(userId: string) {
+  async confirmUserEmail(userId: string, userPassword: string) {
     try {
-      const user = await this.userModel.findByIdAndUpdate(
-        userId,
+      const user = await this.userModel.findOneAndUpdate(
+        { _id: userId, password: userPassword },
         { confirmedEmail: true },
         {
           new: true,

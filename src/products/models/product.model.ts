@@ -4,8 +4,9 @@ export interface Product extends Document {
   name: string;
   description: string;
   price: number;
-  image: string;
+  previewImages: string[];
+  stock: number;
   category: ProductCategoryType;
   createdAt: Date;
-  updatedAt: Date;
+  updatedAt?: Date;
 }

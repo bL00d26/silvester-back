@@ -18,6 +18,11 @@ export class UpdateProductDto extends PartialType(CreateProductDto) {
   @IsOptional()
   price?: number;
 
+  @IsNotEmpty()
+  @IsString()
+  @IsOptional()
+  stock?: number;
+
   // @IsNotEmpty()
   // @IsString()
   // @IsOptional()

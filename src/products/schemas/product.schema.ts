@@ -14,11 +14,18 @@ export const productSchema = new Schema(
       type: Number,
       required: true,
     },
-    image: {
-      type: String,
+    stock: {
+      type: Number,
       required: true,
-      default: 'default',
+      default: 0,
     },
+    previewImages: [
+      {
+        type: String,
+        required: true,
+        default: 'default',
+      },
+    ],
     category: {
       type: String,
       required: true,

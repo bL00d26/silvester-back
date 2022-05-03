@@ -69,15 +69,19 @@ export class UsersController {
     return res.status(HttpStatus.OK).json({ success: true, user });
   }
 
-  @Get('/confirm-email/:id')
-  async confirmEmail(@Res() res: Response, @Param('id') userId: string) {
-    const user = await this.usersService.confirmUserEmail(userId);
+  @Get('/confirm-email/:id&:password')
+  async confirmEmail(
+    @Res() res: Response,
+    @Param('id') userId: string,
+    @Param('password') userPassword: string,
+  ) {
+    const user = await this.usersService.confirmUserEmail(userId, userPassword);
     if (!user)
       throw new HttpException(
-        'Error al desactivar usuario',
+        'Error al confirmar email',
         HttpStatus.BAD_REQUEST,
       );
-    return res.status(HttpStatus.OK).json({ success: true, user });
+    return res.status(HttpStatus.OK).send('Email Confirmado');
   }
 
   @Get('/activate/:id')

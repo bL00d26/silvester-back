@@ -12,7 +12,7 @@ export class AuthService {
 
   async login(loginUserDto: LoginUserDto) {
     const user = await this.userService.loginUser(loginUserDto);
-    if (!user) return null;
+    if (!user) return { user: null, accessToken: null };
     const accessToken = this.jwtService.sign({ user });
     return { user, accessToken };
   }
