@@ -12,7 +12,7 @@ export class EmailService {
       const url = `example.com/auth/confirm?token=${'HOLATOKEN'}`;
 
       const messageInfo = await this.mailerService.sendMail({
-        to: 'martinperez290597@gmail.com',
+        to: 'davidproyecto01@gmail.com',
         from: 'plataforma@arcavirtual.net',
         subject: 'Welcome to Nice App! Confirm your Email',
         template: './confirmation', // `.hbs` extension is appended automatically
@@ -27,6 +27,46 @@ export class EmailService {
       return 'Error sending email';
     }
   }
+
+  async sendUserOrderDetail() {
+    try {
+      const messageInfo = await this.mailerService.sendMail({
+        to: 'davidproyecto01@gmail.com',
+        from: 'plataforma@arcavirtual.net',
+        subject: 'Order details! Check your products',
+        template: './order-details', // `.hbs` extension is appended automatically
+        context: {
+          name: 'Martin Perez',
+          quantity: 5,
+          items: [
+            {
+              item: 'Lagartija ejemplar color dorado',
+              image:
+                'https://i0.wp.com/theurbanreptile.com/wp-content/uploads/2022/01/TUR-BD-21D3.jpg',
+              quantity: 3,
+              price: 100,
+              subtotal: 300,
+            },
+            {
+              item: 'Lagartija ejemplar 450 color naranja',
+              image:
+                'https://i0.wp.com/theurbanreptile.com/wp-content/uploads/2022/01/TUR-BD-21A5.jpg',
+              quantity: 2,
+              price: 150,
+              subtotal: 300,
+            },
+          ],
+          total: 600.0,
+        },
+      });
+
+      return messageInfo;
+    } catch (error) {
+      console.log(error);
+      return 'Error sending email';
+    }
+  }
+
   async sendEmail() {
     try {
       const res = await this.mailerService.sendMail({

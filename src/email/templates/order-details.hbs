@@ -1,0 +1,78 @@
+ <head>
+    <link href="http://localhost:4050/public/styles/order_details.css" rel="stylesheet">
+</head>
+<body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: transparent;">
+   <center style="width: 100%; background-color: #f1f1f1;">
+      <div style="max-width: 600px; margin: 0 auto;" class="email-container">
+         <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">
+            <tbody>
+               <tr>
+                  <td valign="top" class="bg_white" style="padding: 1em 2.5em 0 2.5em;">
+                     <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tbody>
+                           <tr>
+                              <td class="logo" style="text-align: left;">
+                                 <h1><a href="https://silvester.com">Silvester</a></h1>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </td>
+               </tr>
+               <tr>
+                  <td valign="middle" class="hero bg_white" style="padding: 2em 0 2em 0;">
+                     <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tbody>
+                           <tr>
+                              <td style="padding: 0 2.5em; text-align: left;">
+                                 <div class="text">
+                                    <h2>Hola {{name}}, te informamos que tu pedido ha sido creado</h2>
+                                    <h3>En este momento estamos procediendo a validar la disponibilidad de stock para poder despachar tu pedido. Gracias por comprar en Silvester.com</h3>
+                                 </div>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </td>
+               </tr>
+               <tr></tr>
+            </tbody>
+         </table>
+         <table class="bg_white" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tbody>
+               <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
+                  <th width="80%" style="text-align:left; padding: 0 2.5em; color: #000; padding-bottom: 20px">Producto</th>
+                  <th width="20%" style="text-align:right; padding: 0 2.5em; color: #000; padding-bottom: 20px">Precio</th>
+               </tr>
+               {{#each items}}
+               <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
+                  <td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;">
+                     <div class="product-entry">
+                        <img src="{{image}}" alt="" style="width: 100px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
+                        <div class="text">
+                           <h3>{{item}}</h3>
+                           <span>Cantidad: {{quantity}}</span>
+                        </div>
+                     </div>
+                  </td>
+                  <td valign="middle" width="20%" style="text-align:left; padding: 0 2.5em;">
+                     <span class="price" style="color: #000; font-size: 20px;">S/. {{price}}</span>
+                  </td>
+               </tr>
+               {{/each}}
+               
+                <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
+                  <th width="20%" style="text-align:left; padding: 1em 2.5em; color: #000;"><h3>Total: </h3></th>
+                  <th width="20%" style="text-align:right; padding: 1em 2.5em; color: #000;"><h2>S/. {{total}}</h2></th>
+               </tr>
+               
+               <tr>
+                  <td valign="middle" style="text-align:left; padding: 1em 2.5em;">
+                     <p><a href="#" class="btn btn-primary">Hacer una compra nueva</a></p>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </center>
+</body>
