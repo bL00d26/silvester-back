@@ -154,7 +154,7 @@ export class UsersController {
   @Get('/test-email')
   async testEmail(@Res() res: Response) {
     try {
-      const res1 = await this.emailService.sendUserConfirmation();
+      const res1 = await this.emailService.sendUserOrderDetail();
       res.status(HttpStatus.OK).json({
         res1,
       });

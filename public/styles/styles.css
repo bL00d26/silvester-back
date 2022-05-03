@@ -1,92 +1,306 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Manrope', sans-serif;
+}
 
-    * {
-        margin: 0;
-        padding: 0;
-        font-family: "Manrope", sans-serif;
-      }
-      
-      body {
-        min-width: 800px;
-        max-width: 800px;
-        margin: 0 auto;
-      }
-      
-      .center {
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      
-      .mt-5 {
-        margin-top: 10px;
-      }
-      
-      .col-2 {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-        justify-items: center;
-      }
-      
-      .button {
-        width: fit-content;
-        border: none;
-        background: none;
-        padding: 8px 24px;
-        border-radius: 4px;
-        cursor: pointer;
-        text-decoration: none;
-        text-align: center;
-      }
-      
-      .bg-primary {
-        background: #f96332;
-        color: #fff;
-      }
-      
-      /* Confirmation email */
-      .confirmation-email .main-text {
-        font-weight: 600;
-        padding: 40px 20px;
-      }
-      .confirmation-email .message {
-        padding: 20px;
-        padding-top: 40px;
-      }
-      .confirmation-email .message .buttons {
-        margin-top: 40px;
-      }
-      .confirmation-email .items-content {
-        margin-top: 20px;
-      }
-      .confirmation-email .items-content .table {
-        margin-top: 10px;
-      }
-      .confirmation-email .items-content .table .head,
-      .confirmation-email .items-content .table .body {
-        display: grid;
-        grid-template-columns: 9fr 1fr 1fr 1fr;
-        gap: 20px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        padding: 10px;
-      }
-      .confirmation-email .items-content .table .body {
-        margin-top: 5px;
-      }
-      .confirmation-email .items-content .table .body > div {
-        display: flex;
-        align-items: center;
-      }
-      .confirmation-email .items-content .table .body .item {
-        display: grid;
-        grid-template-columns: 80px 1fr;
-        gap: 10px;
-      }
-      .confirmation-email .items-content .table .body .item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 5px;
-      }
+.center {
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.mt-5 {
+  margin-top: 10px;
+}
+
+.col-2 {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border: none;
+  background: none;
+  padding: 8px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.bg-primary {
+  background: #f96332;
+  color: #fff;
+}
+
+/* Confirmation email */
+.confirmation-email {
+  min-width: 800px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.confirmation-email .main-text {
+  font-weight: 600;
+  padding: 40px 20px;
+}
+.confirmation-email .message {
+  padding: 20px;
+  padding-top: 40px;
+}
+.confirmation-email .message .buttons {
+  margin-top: 40px;
+}
+.confirmation-email .items-content {
+  margin-top: 20px;
+}
+.confirmation-email .items-content .table {
+  margin-top: 10px;
+}
+.confirmation-email .items-content .table .head,
+.confirmation-email .items-content .table .body {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 9fr 20px 1fr 20px 1fr 20px 1fr;
+  grid-template-columns: 9fr 1fr 1fr 1fr;
+  gap: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+}
+.confirmation-email .items-content .table .body {
+  margin-top: 5px;
+}
+.confirmation-email .items-content .table .body > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.confirmation-email .items-content .table .body .item {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 80px 10px 1fr;
+  grid-template-columns: 80px 1fr;
+  gap: 10px;
+}
+.confirmation-email .items-content .table .body .item img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.example {
+  display: -ms-grid;
+  display: grid;
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(white),
+    to(black)
+  );
+  background: -o-linear-gradient(top, white, black);
+  background: linear-gradient(to bottom, white, black);
+}
+
+
+
+
+
+
+
+.primary{
+	background: #17bebb;
+}
+.bg_white{
+	background: #ffffff;
+}
+.bg_light{
+	background: #f7fafa;
+}
+.bg_black{
+	background: #000000;
+}
+.bg_dark{
+	background: rgba(0,0,0,.8);
+}
+.email-section{
+	padding:2.5em;
+}
+
+/*BUTTON*/
+.btn{
+	padding: 10px 15px;
+	display: inline-block;
+}
+.btn.btn-primary{
+	border-radius: 5px;
+	background: #17bebb;
+	color: #ffffff;
+}
+.btn.btn-white{
+	border-radius: 5px;
+	background: #ffffff;
+	color: #000000;
+}
+.btn.btn-white-outline{
+	border-radius: 5px;
+	background: transparent;
+	border: 1px solid #fff;
+	color: #fff;
+}
+.btn.btn-black-outline{
+	border-radius: 0px;
+	background: transparent;
+	border: 2px solid #000;
+	color: #000;
+	font-weight: 700;
+}
+.btn-custom{
+	color: rgba(0,0,0,.3);
+	text-decoration: underline;
+}
+
+h1,h2,h3,h4,h5,h6{
+	font-family: 'Work Sans', sans-serif;
+	color: #000000;
+	margin-top: 0;
+	font-weight: 400;
+}
+
+body{
+	font-family: 'Work Sans', sans-serif;
+	font-weight: 400;
+	font-size: 15px;
+	line-height: 1.8;
+	color: rgba(0,0,0,.4);
+}
+
+a{
+	color: #17bebb;
+}
+
+table{
+}
+/*LOGO*/
+
+.logo h1{
+	margin: 0;
+}
+.logo h1 a{
+	color: #17bebb;
+	font-size: 24px;
+	font-weight: 700;
+	font-family: 'Work Sans', sans-serif;
+}
+
+/*HERO*/
+.hero{
+	position: relative;
+	z-index: 0;
+}
+
+.hero .text{
+	color: rgba(0,0,0,.3);
+}
+.hero .text h2{
+	color: #000;
+	font-size: 34px;
+	margin-bottom: 15px;
+	font-weight: 300;
+	line-height: 1.2;
+}
+.hero .text h3{
+	font-size: 24px;
+	font-weight: 200;
+}
+.hero .text h2 span{
+	font-weight: 600;
+	color: #000;
+}
+
+
+/*PRODUCT*/
+.product-entry{
+	display: block;
+	position: relative;
+	float: left;
+	padding-top: 20px;
+}
+.product-entry .text{
+	width: calc(100% - 125px);
+	padding-left: 20px;
+}
+.product-entry .text h3{
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+.product-entry .text p{
+	margin-top: 0;
+}
+.product-entry img, .product-entry .text{
+	float: left;
+}
+
+ul.social{
+	padding: 0;
+}
+ul.social li{
+	display: inline-block;
+	margin-right: 10px;
+}
+
+/*FOOTER*/
+
+.footer{
+	border-top: 1px solid rgba(0,0,0,.05);
+	color: rgba(0,0,0,.5);
+}
+.footer .heading{
+	color: #000;
+	font-size: 20px;
+}
+.footer ul{
+	margin: 0;
+	padding: 0;
+}
+.footer ul li{
+	list-style: none;
+	margin-bottom: 10px;
+}
+.footer ul li a{
+	color: rgba(0,0,0,1);
+}
+
+
+@media screen and (max-width: 500px) {
+
+
+}
