@@ -21,12 +21,14 @@ import { imageFileFilter } from 'src/utils';
 import { ChangePasswordDto, EditUserDto, RegisterUserDto } from './dto';
 import { UsersService } from './users.service';
 import { EmailService } from 'src/email/email.service';
+import { AuthService } from 'src/auth/auth.service';
 
 @Controller('users')
 export class UsersController {
   constructor(
     private readonly usersService: UsersService,
     private readonly emailService: EmailService,
+    private readonly authService: AuthService,
   ) {}
 
   @Post('/register')
@@ -34,14 +36,23 @@ export class UsersController {
     @Res() res: Response,
     @Body() registerUserDto: RegisterUserDto,
   ) {
+    if (registerUserDto.password !== registerUserDto.repeatedPassword) {
+      return res
+        .status(HttpStatus.BAD_REQUEST)
+        .json({ message: ['Las contraseñas no coinciden'] });
+    }
     const user = await this.usersService.registerUser(registerUserDto);
     if (!user)
       throw new HttpException(
         'Error al registrar usuario',
         HttpStatus.BAD_REQUEST,
       );
+    const { accessToken } = await this.authService.login({
+      email: user.email,
+      password: registerUserDto.password,
+    });
+    res.status(HttpStatus.OK).json({ success: true, user, accessToken });
     // this.emailService.sendConfirmationEmail(user); //TODO: Enviar correo de confirmación
-    return res.status(HttpStatus.OK).json({ success: true, user });
   }
   @Put('/edit/:id')
   async editUser(
