@@ -48,6 +48,7 @@ export const userSchema = new Schema({
   cellphone: {
     type: String,
     required: true,
+    unique: true,
   },
   active: {
     type: Boolean,

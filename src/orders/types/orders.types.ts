@@ -1,6 +1,7 @@
-export type OrderType = {
+export type OrderPaymentType = {
   YAPE: 'YAPE';
   PLIN: 'PLIN';
+  DEPOSIT: 'DEPOSIT';
 };
 
 export type OrderStatusType = {

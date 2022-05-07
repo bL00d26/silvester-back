@@ -1,9 +1,9 @@
-import { IsNotEmpty, IsString } from 'class-validator';
-import { OrderStatusType, OrderType } from '../types/orders.types';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { OrderStatusType, OrderPaymentType } from '../types/orders.types';
 
 export class CreateOrderDto {
   @IsNotEmpty()
-  @IsString()
+  @IsNumber()
   totalAmount: number;
 
   @IsNotEmpty()
@@ -12,7 +12,7 @@ export class CreateOrderDto {
 
   @IsNotEmpty()
   @IsString()
-  type: OrderType;
+  type: OrderPaymentType;
 
   @IsNotEmpty()
   @IsString()

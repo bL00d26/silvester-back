@@ -1,10 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { MailerService } from '@nestjs-modules/mailer';
 
 import { User } from 'src/users/models';
 
 @Injectable()
 export class EmailService {
+  private readonly logger = new Logger('EmailService');
   constructor(private readonly mailerService: MailerService) {}
 
   async sendUserConfirmation() {
@@ -23,7 +24,7 @@ export class EmailService {
       });
       return messageInfo;
     } catch (error) {
-      console.log(error);
+      this.logger.log(error);
       return 'Error sending email';
     }
   }
@@ -62,7 +63,7 @@ export class EmailService {
 
       return messageInfo;
     } catch (error) {
-      console.log(error);
+      this.logger.log(error);
       return 'Error sending email';
     }
   }
@@ -77,7 +78,7 @@ export class EmailService {
       });
       return res;
     } catch (error) {
-      console.log(error);
+      this.logger.log(error);
       return null;
     }
   }
@@ -109,7 +110,7 @@ export class EmailService {
   //       );
   //     });
   //   } catch (error) {
-  //     console.log(error);
+  //     this.logger.log(error);
   //   }
   // }
 
@@ -138,7 +139,7 @@ export class EmailService {
   //       );
   //     });
   //   } catch (error) {
-  //     console.log(error);
+  //     this.logger.log(error);
   //   }
   // }
   // async notifyDeletedEvent(event: Event, users: User[]) {
@@ -166,7 +167,7 @@ export class EmailService {
   //       );
   //     });
   //   } catch (error) {
-  //     console.log(error);
+  //     this.logger.log(error);
   //   }
   // }
   // async notifyEditedEvent(event: Event, users: User[]) {
@@ -194,7 +195,7 @@ export class EmailService {
   //       );
   //     });
   //   } catch (error) {
-  //     console.log(error);
+  //     this.logger.log(error);
   //   }
   // }
 
@@ -210,7 +211,7 @@ export class EmailService {
   //     });
   //     return res;
   //   } catch (error) {
-  //     console.log(error);
+  //     this.logger.log(error);
   //     return null;
   //   }
   // }

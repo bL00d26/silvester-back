@@ -37,7 +37,7 @@ export class UsersController {
     @Body() registerUserDto: RegisterUserDto,
   ) {
     if (registerUserDto.password !== registerUserDto.repeatedPassword) {
-      return res
+      res
         .status(HttpStatus.BAD_REQUEST)
         .json({ message: ['Las contraseñas no coinciden'] });
     }
@@ -66,7 +66,7 @@ export class UsersController {
         'Error al editar usuario',
         HttpStatus.BAD_REQUEST,
       );
-    return res.status(HttpStatus.OK).json({ success: true, user });
+    res.status(HttpStatus.OK).json({ success: true, user });
   }
 
   @Get('/deactivate/:id')
@@ -77,7 +77,7 @@ export class UsersController {
         'Error al desactivar usuario',
         HttpStatus.BAD_REQUEST,
       );
-    return res.status(HttpStatus.OK).json({ success: true, user });
+    res.status(HttpStatus.OK).json({ success: true, user });
   }
 
   @Get('/confirm-email/:id&:password')
@@ -92,7 +92,7 @@ export class UsersController {
         'Error al confirmar email',
         HttpStatus.BAD_REQUEST,
       );
-    return res.status(HttpStatus.OK).send('Email Confirmado');
+    res.status(HttpStatus.OK).send('Email Confirmado');
   }
 
   @Get('/activate/:id')
@@ -103,7 +103,7 @@ export class UsersController {
         'Error al activar usuario',
         HttpStatus.BAD_REQUEST,
       );
-    return res.status(HttpStatus.OK).json({ success: true, user });
+    res.status(HttpStatus.OK).json({ success: true, user });
   }
   @Put('/edit/password')
   async changePassword(

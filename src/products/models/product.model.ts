@@ -7,6 +7,7 @@ export interface Product extends Document {
   previewImages: string[];
   stock: number;
   category: ProductCategoryType;
+  active: boolean;
   createdAt: Date;
   updatedAt?: Date;
 }

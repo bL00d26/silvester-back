@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Collection } from 'src/enums';
@@ -8,6 +8,7 @@ import { Order, OrderProduct } from './models';
 
 @Injectable()
 export class OrdersService {
+  private readonly logger = new Logger('OrdersService');
   constructor(
     @InjectModel(Collection.ORDER)
     private readonly orderModel: Model<Order>,

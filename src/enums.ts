@@ -4,6 +4,7 @@ export enum Collection {
   CATEGORY = 'Category',
   ORDER = 'Order',
   ORDER_PRODUCT = 'OrderProduct',
+  STORE = 'Store',
 }
 
 export enum Field {
@@ -11,3 +12,4 @@ export enum Field {
   ORDER = 'order',
   USER = 'user',
 }
+export const passwordSalts = 10;

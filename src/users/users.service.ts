@@ -1,7 +1,8 @@
 import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import * as bcrypt from 'bcrypt';
 import { Model } from 'mongoose';
-import { Collection } from 'src/enums';
+import { Collection, passwordSalts } from 'src/enums';
 import {
   ChangePasswordDto,
   EditUserDto,
@@ -20,7 +21,14 @@ export class UsersService {
 
   async registerUser(registerUserDto: RegisterUserDto) {
     try {
-      const newUser = await new this.userModel(registerUserDto).save();
+      const hashedPassword = await bcrypt.hash(
+        registerUserDto.password,
+        passwordSalts,
+      );
+      const newUser = await new this.userModel({
+        ...registerUserDto,
+        password: hashedPassword,
+      }).save();
       return newUser;
     } catch (error) {
       this.logger.log(error);
@@ -29,8 +37,12 @@ export class UsersService {
   }
   async loginUser(loginUserDto: LoginUserDto) {
     try {
-      const user = await this.userModel.findOne(loginUserDto);
-      if (!user || !user.active) return null;
+      const user = await this.userModel.findOne({ email: loginUserDto.email });
+      const isMatch = await bcrypt.compare(
+        loginUserDto.password,
+        user.password,
+      );
+      if (!user || !user.active || !isMatch) return null;
       return user;
     } catch (error) {
       this.logger.log(error);

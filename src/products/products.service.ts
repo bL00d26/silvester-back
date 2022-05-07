@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Collection } from 'src/enums';
@@ -8,27 +8,35 @@ import { Product } from './models';
 
 @Injectable()
 export class ProductsService {
+  private readonly logger = new Logger('ProductsService');
   constructor(
     @InjectModel(Collection.PRODUCT)
     private readonly productModel: Model<Product>,
   ) {}
-  create(createProductDto: CreateProductDto) {
-    return 'This action adds a new product';
+
+  async create(createProductDto: CreateProductDto) {
+    try {
+      const newProduct = await new this.productModel(createProductDto).save();
+      return newProduct;
+    } catch (error) {
+      this.logger.log(error);
+      return null;
+    }
   }
 
-  findAll() {
+  async findAll() {
     return `This action returns all products`;
   }
 
-  findOne(id: number) {
+  async findOne(id: string) {
     return `This action returns a #${id} product`;
   }
 
-  update(id: number, updateProductDto: UpdateProductDto) {
+  async update(id: string, updateProductDto: UpdateProductDto) {
     return `This action updates a #${id} product`;
   }
 
-  remove(id: number) {
+  async remove(id: string) {
     return `This action removes a #${id} product`;
   }
 }

@@ -13,6 +13,10 @@ export const orderProductSchema = new Schema(
       ref: Collection.PRODUCT,
       required: true,
     },
+    quantity: {
+      type: Number,
+      required: true,
+    },
   },
   { timestamps: true },
 );

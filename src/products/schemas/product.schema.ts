@@ -30,6 +30,11 @@ export const productSchema = new Schema(
       type: String,
       required: true,
     },
+    active: {
+      type: Boolean,
+      required: true,
+      default: true,
+    },
   },
   { timestamps: true },
 );
@@ -37,6 +42,5 @@ export const productSchema = new Schema(
 productSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     delete returnedObject.__v;
-    delete returnedObject.password;
   },
 });
