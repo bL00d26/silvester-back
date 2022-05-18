@@ -13,6 +13,22 @@ export class CreateProductDto {
   @IsNumber()
   price: number;
 
+  @IsNotEmpty()
+  @IsString()
+  species:string;
+
+  @IsNotEmpty()
+  @IsString()
+  birthDate:string;
+
+  @IsNotEmpty()
+  @IsNumber()
+  weight:number;
+
+  @IsNotEmpty()
+  @IsString()
+  gender:string;
+  
   // @IsNotEmpty()
   // @IsString()
   // image: string;

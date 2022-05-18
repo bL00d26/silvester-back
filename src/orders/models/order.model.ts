@@ -9,4 +9,6 @@ export interface Order extends Document {
   type: OrderPaymentType;
   discount?: number;
   status: OrderStatusType;
+  createdAt: string;
+  updatedAt?: string;
 }

@@ -24,7 +24,13 @@ export class StoreService {
   }
 
   async findAll() {
-    return `This action returns all store`;
+    try {
+      const store = await this.storeModel.findOne();
+      return store;
+    } catch (error) {
+      this.logger.log(error);
+      return null;
+    }
   }
 
   async findOne(id: number) {

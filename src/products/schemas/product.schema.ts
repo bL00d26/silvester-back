@@ -26,6 +26,22 @@ export const productSchema = new Schema(
         default: 'default',
       },
     ],
+    species:{
+      type: String,
+      required: true,
+    },
+  birthDate:{
+      type: String,
+      required: true,
+    },
+  weight:{
+    type: Number,
+    required: true,
+  },
+  gender:{
+      type: String,
+      required: true,
+    },
     category: {
       type: String,
       required: true,

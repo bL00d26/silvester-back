@@ -24,16 +24,19 @@ export class StoreController {
   async create(@Res() res: Response, @Body() createStoreDto: CreateStoreDto) {
     const store = await this.storeService.create(createStoreDto);
     if (!store)
-      throw new HttpException(
-        'Error al confirmar email',
-        HttpStatus.BAD_REQUEST,
-      );
+      throw new HttpException('Error al crear store', HttpStatus.BAD_REQUEST);
     res.status(HttpStatus.OK).json({ success: true, store });
   }
 
   @Get()
-  findAll() {
-    return this.storeService.findAll();
+  async findAll(@Res() res: Response) {
+    const store = await this.storeService.findAll();
+    if (!store)
+      throw new HttpException(
+        'Error al encontrar el store',
+        HttpStatus.BAD_REQUEST,
+      );
+    res.status(HttpStatus.OK).json({ success: true, store });
   }
 
   @Get(':id')
